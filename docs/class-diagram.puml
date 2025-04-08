@@ -1,0 +1,65 @@
+@startuml 
+skinparam monochrome true
+
+package "ACME.OOP.SCM"{
+class "Supplier" as Supplier{
+    +Identifier: string {readonly}
+    +Name: string {readonly}
+    +Address: string {readonly}
+}
+class "SupplierId" as SupplierId{
+    +Identifier: string {readonly}
+}
+Supplier "1" --> "1" SupplierId : relates to
+}
+
+package "ACME.OOP.Procurement"{
+class "PurchaseOrder" as PO{
+    +OrderNumber: string {readonly}
+    +SupplierId: Supplier {readonly}
+    +OrderDate: string {readonly}
+    +Currency: string {readonly}
+    +_items: List<PurchaseOrderItem> 
+    +Items: IReadOnlyList<PurchaseOrderId> {readonly}
+    --
+    +AddItem(product: ProductId, quantity: int, unitPrice: decimal): void
+    +CalculateTotal(): Money
+}
+class "PurchaseOrderId" as POItem{
+    +ProductId: ProductId {readonly}
+    +Quantity: int {readonly}
+    +UnitPrice: Money {readonly}
+    --
+    +CalculateTotal(): Money
+}
+
+class "ProductId" as ProductId{
+    +Id: Guid {readonly}
+    --
+    +New(): ProductId
+}
+
+PO "1" --> "1" SupplierId
+PO "1" --> "*" POItem : manages
+POItem "1" --> "1" ProductId : refers to
+}
+
+package "ACME.OOP.Shared"{
+class "Money" as Money{
+    +Amount: decimal {readonly}
+    +Currency: string {readonly}
+    --
+    +Add(money: Money): Money
+    +AsString(): string
+}
+class "Address" as Address{
+    +Street: string {readonly}
+    +Number: string {readonly}
+    +City: string {readonly}
+    +StateOrRegion: string {readonly}
+    +PostalCode: string {readonly}
+    +Country: string {readonly}
+}
+POItem "1" --> "1" Money : has
+POItem "1" --> "1" Address : has
+@enduml
