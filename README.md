@@ -17,6 +17,6 @@ Sample console application to demonstrate the use of OOP principles in C#.
 ## Class Diagram
 The following class diagram illustrates the structure of the application:
 
-![class-diagram](https://www.plantuml.com/plantuml/proxy?scr=https://raw.githubusercontent.com/upc-pre-202510-1asi0730-4368/oop-sample/refs/heads/main/docs/class-diagram.puml)
+![class-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/upc-pre-202510-1asi0730-4368/oop-sample/refs/heads/main/docs/class-diagram.puml)
 
 
